@@ -16,7 +16,7 @@ import Layout from "../layouts/Layout.astro";
 		<img src="/vaish-v2.github.io/vaish.jpg" alt="Profile Picture" class="profile-pic" />
 		
 		<div class="download-button">
-			<a href="/" title="Download CV" download style="text-decoration: none; color:#ccc">
+			<a id="downloadLink" href="/vaish-v2.github.io/resume.jpg" title="Download CV" download style="text-decoration: none; color:#ccc">
 				<i class="fa fa-download"></i>
 				Download CV
 			</a>
@@ -262,3 +262,19 @@ I am currently seeking internship/co-op in Spring, Summer, Fall 2025 to leverage
     }
 
 </style>
+<script>
+    document.getElementById("downloadLink").addEventListener("click", function (event) {
+        event.preventDefault();
+        
+        // Create a temporary anchor element to download the file
+        const link = document.createElement('a');
+        link.href = this.href;
+        link.download = 'resume.pdf'; // This will trigger the download
+        link.click();
+        
+        // Open the downloaded file in a new tab after a short delay
+        setTimeout(() => {
+            window.open(this.href, '_blank');
+        }, 500);  // Delay to ensure download starts before opening
+    });
+</script>
